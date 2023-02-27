@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #define NUM_BITS 17
 #define WORD_LENGTH 16
 
