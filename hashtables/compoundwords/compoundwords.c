@@ -1,5 +1,6 @@
 #include <stdio.h>
 #define NUM_BITS 17
+#define WORD_LENGTH 16
 
 typedef struct word_node {
   char **word;
@@ -55,4 +56,31 @@ void identify_compound_words(char *words[], word_node *hash_table[], int total_w
       }
     }
   }
+}
+
+int main(void) {
+    static char *words[1 << NUM_BITS] = {NULL};
+    static word_node *hash_table[1 << NUM_BITS] = {NULL};
+    int total = 0;
+    char *word;
+    word_node *wordptr;
+    unsigned length, word_code;
+    word = read_line(WORD_LENGTH);
+    while (*word) {
+        words[total] = word;
+        wordptr = malloc(sizeof(word_node));
+        if (wordptr == NULL) {
+			fprintf(stderr, "malloc error\n");
+            exit(1);
+        }
+        length = strlen(word);
+        word_code = oaat(word, length, NUM_BITS);
+        wordptr->word = &words[total];
+        wordptr->next = hash_table[word_code];
+        hash_table[word_code] = wordptr;
+        word = read_line(WORD_LENGTH);
+        total++;
+    }
+    identify_compound_words(words, hash_table, total);
+    return 0;
 }
