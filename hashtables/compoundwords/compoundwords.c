@@ -23,7 +23,7 @@ int in_hash_table(word_node *hash_table[], char *find, unsigned find_len) {
   return 0;
 }
 
-char *read_line(int_size) {
+char *read_line(int size) {
   char *str;
   int ch;
   int len = 0;

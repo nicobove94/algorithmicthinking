@@ -1,6 +1,6 @@
 #ifndef OAAT_H
 #define OAAT_H
 
-unsigned int oaat(char *key, unsigned long len, unsigned long bits);
+unsigned long oaat(char *key, unsigned long len, unsigned long bits);
 
 #endif /* OAAT_H */
